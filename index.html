@@ -1,0 +1,949 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <script src="echarts.min.js"></script>
+    <script>
+        //1. 企业对云的关注度
+        var concernCloudPlatform1;
+        var concernCloudPlatform2;
+        var concernCloudPlatform3;
+
+        //2. 企业对云平台发展的看法
+        var viewCloudPlatform1;
+        var viewCloudPlatform2;
+        var viewCloudPlatform3;
+
+        //3. 企业云平台发展程度
+        var developmentLevelCloudPlatform1;
+        var developmentLevelCloudPlatform2;
+        var developmentLevelCloudPlatform3;
+
+        //4. 是否存在大量的潜在客户
+        var whetherPotentialUser1;
+        var whetherPotentialUser2;
+        var whetherPotentialUser3;
+
+        //5. 运营模式
+        var expectedBusinessModel1;
+        var expectedBusinessModel2;
+        var expectedBusinessModel3;
+
+        //6. 采用类型
+        var typeDeployCloud1;
+        var typeDeployCloud2;
+        var typeDeployCloud3;
+
+        //7. 使用公共云服务平台
+        var usingPublicCloudServicePlatform1;
+        var usingPublicCloudServicePlatform2;
+        var usingPublicCloudServicePlatform3;
+
+        //8. 迁移现有信息至云平台
+        var migratingExistingInformationToCloudPlatform1;
+        var migratingExistingInformationToCloudPlatform2;
+        var migratingExistingInformationToCloudPlatform3;
+
+        //9. 成为云平台前期试点
+        var becomePilotForCloudPlatform1;
+        var becomePilotForCloudPlatform2;
+        var becomePilotForCloudPlatform3;
+
+        //10. 支付费用
+        var paymentExpense1;
+        var paymentExpense2;
+        var paymentExpense3;
+
+        //11. 了解程度
+        var understandingLevel1;
+        var understandingLevel2;
+        var understandingLevel3;
+
+        //12. 是否有利于信息化水平
+        var isConduciveToTheLevelOfInformationTechnology1;
+        var isConduciveToTheLevelOfInformationTechnology2;
+        var isConduciveToTheLevelOfInformationTechnology3;
+
+        //13. 是否有自建的私有云平台
+        var isThereSelfBuiltPrivateCloudPlatform1;
+        var isThereSelfBuiltPrivateCloudPlatform2;
+        var isThereSelfBuiltPrivateCloudPlatform3;
+
+        //14. 是否会产生大量信息
+        var isItGoingToGenerateALotOfInformation1;
+        var isItGoingToGenerateALotOfInformation2;
+        var isItGoingToGenerateALotOfInformation3;
+
+        //Ajax函数
+        function getData(str) {
+            var xmlhttp;
+            if (window.XMLHttpRequest) {
+                // IE7+, Firefox, Chrome, Opera, Safari 浏览器执行代码
+                xmlhttp = new XMLHttpRequest();
+            }
+            else {
+                // IE6, IE5 浏览器执行代码
+                xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+            }
+            xmlhttp.onreadystatechange = function () {
+                if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                    //1. 企业对云的关注度
+                    if (str == "concernCloudPlatform1") {
+                        concernCloudPlatform1 = parseInt(xmlhttp.responseText);
+                    } else if (str == "concernCloudPlatform2") {
+                        concernCloudPlatform2 = parseInt(xmlhttp.responseText);
+                    } else if (str == "concernCloudPlatform3") {
+                        concernCloudPlatform3 = parseInt(xmlhttp.responseText);
+                    }
+
+                    //2. 企业对云平台发展的看法
+                    else if (str == "viewCloudPlatform1") {
+                        viewCloudPlatform1 = parseInt(xmlhttp.responseText);
+                    } else if (str == "viewCloudPlatform2") {
+                        viewCloudPlatform2 = parseInt(xmlhttp.responseText);
+                    } else if (str == "viewCloudPlatform3") {
+                        viewCloudPlatform3 = parseInt(xmlhttp.responseText);
+                    }
+
+                    //3. 企业云平台发展程度
+                    else if (str == "developmentLevelCloudPlatform1") {
+                        developmentLevelCloudPlatform1 = parseInt(xmlhttp.responseText);
+                    } else if (str == "developmentLevelCloudPlatform2") {
+                        developmentLevelCloudPlatform2 = parseInt(xmlhttp.responseText);
+                    } else if (str == "developmentLevelCloudPlatform3") {
+                        developmentLevelCloudPlatform3 = parseInt(xmlhttp.responseText);
+                    } else if (str == "developmentLevelCloudPlatform4") {
+                        developmentLevelCloudPlatform4 = parseInt(xmlhttp.responseText);
+                    } 
+
+                    //4. 是否存在大量的潜在客户
+                    else if (str == "whetherPotentialUser1") {
+                        whetherPotentialUser1 = parseInt(xmlhttp.responseText);
+                    } else if (str == "whetherPotentialUser2") {
+                        whetherPotentialUser2 = parseInt(xmlhttp.responseText);
+                    } else if (str == "whetherPotentialUser3") {
+                        whetherPotentialUser3 = parseInt(xmlhttp.responseText);
+                    }
+
+                    //5. 运营模式
+                    else if (str == "expectedBusinessModel1") {
+                        expectedBusinessModel1 = parseInt(xmlhttp.responseText);
+                    } else if (str == "expectedBusinessModel2") {
+                        expectedBusinessModel2 = parseInt(xmlhttp.responseText);
+                    } else if (str == "expectedBusinessModel3") {
+                        expectedBusinessModel3 = parseInt(xmlhttp.responseText);
+                    } else if (str == "expectedBusinessModel4") {
+                        expectedBusinessModel4 = parseInt(xmlhttp.responseText);
+                    } 
+
+                    //6. 采用类型
+                    else if (str == "typeDeployCloud1") {
+                        typeDeployCloud1 = parseInt(xmlhttp.responseText);
+                    } else if (str == "typeDeployCloud2") {
+                        typeDeployCloud2 = parseInt(xmlhttp.responseText);
+                    } else if (str == "typeDeployCloud3") {
+                        typeDeployCloud3 = parseInt(xmlhttp.responseText);
+                    } else if (str == "typeDeployCloud4") {
+                        typeDeployCloud4 = parseInt(xmlhttp.responseText);
+                    } 
+
+                    //7. 使用公共云服务平台
+                    else if (str == "usingPublicCloudServicePlatform1") {
+                        usingPublicCloudServicePlatform1 = parseInt(xmlhttp.responseText);
+                    } else if (str == "usingPublicCloudServicePlatform2") {
+                        usingPublicCloudServicePlatform2 = parseInt(xmlhttp.responseText);
+                    } else if (str == "usingPublicCloudServicePlatform3") {
+                        usingPublicCloudServicePlatform3 = parseInt(xmlhttp.responseText);
+                    }
+
+                    //8. 迁移现有信息至云平台
+                    else if (str == "migratingExistingInformationToCloudPlatform1") {
+                        migratingExistingInformationToCloudPlatform1 = parseInt(xmlhttp.responseText);
+                    } else if (str == "migratingExistingInformationToCloudPlatform2") {
+                        migratingExistingInformationToCloudPlatform2 = parseInt(xmlhttp.responseText);
+                    } else if (str == "migratingExistingInformationToCloudPlatform3") {
+                        migratingExistingInformationToCloudPlatform3 = parseInt(xmlhttp.responseText);
+                    }
+
+                    //9. 成为云平台前期试点
+                    else if (str == "becomePilotForCloudPlatform1") {
+                        becomePilotForCloudPlatform1 = parseInt(xmlhttp.responseText);
+                    } else if (str == "becomePilotForCloudPlatform2") {
+                        becomePilotForCloudPlatform2 = parseInt(xmlhttp.responseText);
+                    } else if (str == "becomePilotForCloudPlatform3") {
+                        becomePilotForCloudPlatform3 = parseInt(xmlhttp.responseText);
+                    }
+
+                    //10. 支付费用
+                    else if (str == "paymentExpense1") {
+                        paymentExpense1 = parseInt(xmlhttp.responseText);
+                    } else if (str == "paymentExpense2") {
+                        paymentExpense2 = parseInt(xmlhttp.responseText);
+                    } else if (str == "paymentExpense3") {
+                        paymentExpense3 = parseInt(xmlhttp.responseText);
+                    }
+
+                    //11. 了解程度
+                    else if (str == "understandingLevel1") {
+                        understandingLevel1 = parseInt(xmlhttp.responseText);
+                    } else if (str == "understandingLevel2") {
+                        understandingLevel2 = parseInt(xmlhttp.responseText);
+                    } else if (str == "understandingLevel3") {
+                        understandingLevel3 = parseInt(xmlhttp.responseText);
+                    }
+
+                    //12. 是否有利于信息化水平
+                    else if (str == "isConduciveToTheLevelOfInformationTechnology1") {
+                        isConduciveToTheLevelOfInformationTechnology1 = parseInt(xmlhttp.responseText);
+                    } else if (str == "isConduciveToTheLevelOfInformationTechnology2") {
+                        isConduciveToTheLevelOfInformationTechnology2 = parseInt(xmlhttp.responseText);
+                    } else if (str == "isConduciveToTheLevelOfInformationTechnology3") {
+                        isConduciveToTheLevelOfInformationTechnology3 = parseInt(xmlhttp.responseText);
+                    }
+
+                    //13. 是否有自建的私有云平台
+                    else if (str == "isThereSelfBuiltPrivateCloudPlatform1") {
+                        isThereSelfBuiltPrivateCloudPlatform1 = parseInt(xmlhttp.responseText);
+                    } else if (str == "isThereSelfBuiltPrivateCloudPlatform2") {
+                        isThereSelfBuiltPrivateCloudPlatform2 = parseInt(xmlhttp.responseText);
+                    }
+
+                    //14. 是否会产生大量信息
+                    else if (str == "isItGoingToGenerateALotOfInformation1") {
+                        isItGoingToGenerateALotOfInformation1 = parseInt(xmlhttp.responseText);
+                    } else if (str == "isItGoingToGenerateALotOfInformation2") {
+                        isItGoingToGenerateALotOfInformation2 = parseInt(xmlhttp.responseText);
+                    } else if (str == "isItGoingToGenerateALotOfInformation3") {
+                        isItGoingToGenerateALotOfInformation3 = parseInt(xmlhttp.responseText);
+                    }
+                }
+            }
+            xmlhttp.open("GET", "php/gets.php?q=" + str, false);
+            xmlhttp.send();
+        }
+
+    </script>
+</head>
+
+<body>
+    <!--//1. 企业对云的关注度-->
+    <div id="concernCloudPlatform" style="width:100%;height:400px;"></div>
+
+    <!--//2. 企业对云平台发展的看法-->
+    <div id="viewCloudPlatform" style="width:100%;height:400px;"></div>
+
+    <!--//3. 企业云平台发展程度-->
+    <div id="developmentLevelCloudPlatform" style="width:100%;height:400px;"></div>
+
+    <!--//4. 是否存在大量的潜在客户-->
+    <div id="whetherPotentialUser" style="width:100%;height:400px;"></div>
+
+    <!--//5. 运营模式-->
+    <div id="expectedBusinessModel" style="width:100%;height:400px;"></div>
+
+    <!--//6. 采用类型-->
+    <div id="typeDeployCloud" style="width:100%;height:400px;"></div>
+
+    <!--//7. 使用公共云服务平台-->
+    <div id="usingPublicCloudServicePlatform" style="width:100%;height:400px;"></div>
+
+    <!--//8. 迁移现有信息至云平台-->
+    <div id="migratingExistingInformationToCloudPlatform" style="width:100%;height:400px;"></div>
+
+    <!--//9. 成为云平台前期试点-->
+    <div id="becomePilotForCloudPlatform" style="width:100%;height:400px;"></div>
+
+    <!--//10. 支付费用-->
+    <div id="paymentExpense" style="width:100%;height:400px;"></div>
+
+    <!--//11. 了解程度-->
+    <div id="understandingLevel" style="width:100%;height:400px;"></div>
+
+    <!--//12. 是否有利于信息化水平-->
+    <div id="isConduciveToTheLevelOfInformationTechnology" style="width:100%;height:400px;"></div>
+
+    <!--//13. 是否有自建的私有云平台-->
+    <div id="isThereSelfBuiltPrivateCloudPlatform" style="width:100%;height:400px;"></div>
+
+    <!--//14. 是否会产生大量信息-->
+    <div id="isItGoingToGenerateALotOfInformation" style="width:100%;height:400px;"></div>
+
+    <script>//1. 企业对云的关注度
+        //获取数据代码
+        getData("concernCloudPlatform1");
+        getData("concernCloudPlatform2");
+        getData("concernCloudPlatform3");
+
+        //echarts标准代码
+        var myChart = echarts.init(document.getElementById('concernCloudPlatform'));
+        option = {
+            title: {
+                text: '企业是否关注云计算模式',
+                subtext: '所有企业',
+                x: 'center'
+            },
+            tooltip: {
+                trigger: 'item',
+                formatter: "{a} <br/>{b} : {c} ({d}%)"
+            },
+            legend: {
+                orient: 'vertical',
+                left: 'left',
+                data: ['不关注', '一般关注', '非常关注']
+            },
+            series: [
+                {
+                    name: '访问来源',
+                    type: 'pie',
+                    radius: '55%',
+                    center: ['50%', '60%'],
+                    data: [
+                        { value: concernCloudPlatform1, name: '不关注' },
+                        { value: concernCloudPlatform2, name: '一般关注' },
+                        { value: concernCloudPlatform3, name: '非常关注' },
+                    ],
+                    itemStyle: {
+                        emphasis: {
+                            shadowBlur: 10,
+                            shadowOffsetX: 0,
+                            shadowColor: 'rgba(0, 0, 0, 0.5)'
+                        }
+                    }
+                }
+            ]
+        };
+        myChart.setOption(option);
+        //end echarts
+    </script>
+
+    <script>//2. 企业对云平台发展的看法
+        //获取数据代码
+        getData("viewCloudPlatform1");
+        getData("viewCloudPlatform2");
+        getData("viewCloudPlatform3");
+
+        //echarts标准代码
+        var myChart = echarts.init(document.getElementById('viewCloudPlatform'));
+        option = {
+            title: {
+                text: '企业如何看待云计算平台',
+                subtext: '所有企业',
+                x: 'center'
+            },
+            tooltip: {
+                trigger: 'item',
+                formatter: "{a} <br/>{b} : {c} ({d}%)"
+            },
+            legend: {
+                orient: 'vertical',
+                left: 'left',
+                data: ['只是噱头', '有利有弊', '必然趋势']
+            },
+            series: [
+                {
+                    name: '访问来源',
+                    type: 'pie',
+                    radius: '55%',
+                    center: ['50%', '60%'],
+                    data: [
+                        { value: viewCloudPlatform1, name: '只是噱头' },
+                        { value: viewCloudPlatform2, name: '有利有弊' },
+                        { value: viewCloudPlatform3, name: '必然趋势' },
+                    ],
+                    itemStyle: {
+                        emphasis: {
+                            shadowBlur: 10,
+                            shadowOffsetX: 0,
+                            shadowColor: 'rgba(0, 0, 0, 0.5)'
+                        }
+                    }
+                }
+            ]
+        };
+        myChart.setOption(option);
+            //end echarts
+    </script>
+
+    <script>//3. 企业云平台发展程度
+        //获取数据代码
+        getData("developmentLevelCloudPlatform1");
+        getData("developmentLevelCloudPlatform2");
+        getData("developmentLevelCloudPlatform3");
+        getData("developmentLevelCloudPlatform4");
+        
+        //echarts标准代码
+        var myChart = echarts.init(document.getElementById('developmentLevelCloudPlatform'));
+        option = {
+            title: {
+                text: '目前企业在云应用方面处于哪个阶段',
+                subtext: '所有企业',
+                x: 'center'
+            },
+            tooltip: {
+                trigger: 'item',
+                formatter: "{a} <br/>{b} : {c} ({d}%)"
+            },
+            legend: {
+                orient: 'vertical',
+                left: 'left',
+                data: ['观望', '已经规划', '已经局部实施', '已经开始实施']
+            },
+            series: [
+                {
+                    name: '访问来源',
+                    type: 'pie',
+                    radius: '55%',
+                    center: ['50%', '60%'],
+                    data: [
+                        { value: developmentLevelCloudPlatform1, name: '观望' },
+                        { value: developmentLevelCloudPlatform2, name: '已经规划' },
+                        { value: developmentLevelCloudPlatform3, name: '已经局部实施' },
+                        { value: developmentLevelCloudPlatform4, name: '已经开始实施' },
+                    ],
+                    itemStyle: {
+                        emphasis: {
+                            shadowBlur: 10,
+                            shadowOffsetX: 0,
+                            shadowColor: 'rgba(0, 0, 0, 0.5)'
+                        }
+                    }
+                }
+            ]
+        };
+        myChart.setOption(option);
+                //end echarts
+    </script>
+
+    <script>//4. 是否存在大量的潜在客户
+        //获取数据代码
+        getData("whetherPotentialUser1");
+        getData("whetherPotentialUser2");
+        getData("whetherPotentialUser3");
+
+        //echarts标准代码
+        var myChart = echarts.init(document.getElementById('whetherPotentialUser'));
+        option = {
+            title: {
+                text: '企业的信息系统是否存在大量的潜在用户（超过2000人）',
+                subtext: '所有企业',
+                x: 'center'
+            },
+            tooltip: {
+                trigger: 'item',
+                formatter: "{a} <br/>{b} : {c} ({d}%)"
+            },
+            legend: {
+                orient: 'vertical',
+                left: 'left',
+                data: ['是', '不确定', '否']
+            },
+            series: [
+                {
+                    name: '访问来源',
+                    type: 'pie',
+                    radius: '55%',
+                    center: ['50%', '60%'],
+                    data: [
+                        { value: whetherPotentialUser1, name: '是' },
+                        { value: whetherPotentialUser2, name: '不确定' },
+                        { value: whetherPotentialUser3, name: '否' },
+                    ],
+                    itemStyle: {
+                        emphasis: {
+                            shadowBlur: 10,
+                            shadowOffsetX: 0,
+                            shadowColor: 'rgba(0, 0, 0, 0.5)'
+                        }
+                    }
+                }
+            ]
+        };
+        myChart.setOption(option);
+                    //end echarts
+    </script>
+
+    <script>//5. 运营模式
+        //获取数据代码
+        getData("expectedBusinessModel1");
+        getData("expectedBusinessModel2");
+        getData("expectedBusinessModel3");
+        getData("expectedBusinessModel4");
+        
+        //echarts标准代码
+        var myChart = echarts.init(document.getElementById('expectedBusinessModel'));
+        option = {
+            title: {
+                text: '企业期望的信息系统运营模式',
+                subtext: '所有企业',
+                x: 'center'
+            },
+            tooltip: {
+                trigger: 'item',
+                formatter: "{a} <br/>{b} : {c} ({d}%)"
+            },
+            legend: {
+                orient: 'vertical',
+                left: 'left',
+                data: ['软硬件完全租赁，委托管理', '自购服务器，托管至数据中心', '自建机房，自主管理', '租赁机房服务器，软件自购']
+            },
+            series: [
+                {
+                    name: '访问来源',
+                    type: 'pie',
+                    radius: '55%',
+                    center: ['50%', '60%'],
+                    data: [
+                        { value: expectedBusinessModel1, name: '软硬件完全租赁，委托管理' },
+                        { value: expectedBusinessModel2, name: '自购服务器，托管至数据中心' },
+                        { value: expectedBusinessModel3, name: '自建机房，自主管理' },
+                        { value: expectedBusinessModel3, name: '租赁机房服务器，软件自购' },
+                    ],
+                    itemStyle: {
+                        emphasis: {
+                            shadowBlur: 10,
+                            shadowOffsetX: 0,
+                            shadowColor: 'rgba(0, 0, 0, 0.5)'
+                        }
+                    }
+                }
+            ]
+        };
+        myChart.setOption(option);
+                    //end echarts
+    </script>
+
+    <script>//6. 采用类型
+        //获取数据代码
+        getData("typeDeployCloud1");
+        getData("typeDeployCloud2");
+        getData("typeDeployCloud3");
+        getData("typeDeployCloud4");
+        
+        //echarts标准代码
+        var myChart = echarts.init(document.getElementById('typeDeployCloud'));
+        option = {
+            title: {
+                text: '若企业计划部署云，或已部署云，将会采用何种方式',
+                subtext: '所有企业',
+                x: 'center'
+            },
+            tooltip: {
+                trigger: 'item',
+                formatter: "{a} <br/>{b} : {c} ({d}%)"
+            },
+            legend: {
+                orient: 'vertical',
+                left: 'left',
+                data: ['混合云（公有云为主）', '混合云（私有云为主）', '仅私有云', '仅公有云']
+            },
+            series: [
+                {
+                    name: '访问来源',
+                    type: 'pie',
+                    radius: '55%',
+                    center: ['50%', '60%'],
+                    data: [
+                        { value: typeDeployCloud1, name: '混合云（公有云为主）' },
+                        { value: typeDeployCloud2, name: '混合云（私有云为主）' },
+                        { value: typeDeployCloud3, name: '仅私有云' },
+                        { value: typeDeployCloud3, name: '仅公有云' },
+                    ],
+                    itemStyle: {
+                        emphasis: {
+                            shadowBlur: 10,
+                            shadowOffsetX: 0,
+                            shadowColor: 'rgba(0, 0, 0, 0.5)'
+                        }
+                    }
+                }
+            ]
+        };
+        myChart.setOption(option);
+                    //end echarts
+    </script>
+
+    <script>//7. 使用公共云服务平台
+        //获取数据代码
+        getData("usingPublicCloudServicePlatform1");
+        getData("usingPublicCloudServicePlatform2");
+        getData("usingPublicCloudServicePlatform3");
+
+        //echarts标准代码
+        var myChart = echarts.init(document.getElementById('usingPublicCloudServicePlatform'));
+        option = {
+            title: {
+                text: '企业是否愿意或有意向使用基于云计算的国有企业公共服务云平台',
+                subtext: '所有企业',
+                x: 'center'
+            },
+            tooltip: {
+                trigger: 'item',
+                formatter: "{a} <br/>{b} : {c} ({d}%)"
+            },
+            legend: {
+                orient: 'vertical',
+                left: 'left',
+                data: ['否', '不确定', '是']
+            },
+            series: [
+                {
+                    name: '访问来源',
+                    type: 'pie',
+                    radius: '55%',
+                    center: ['50%', '60%'],
+                    data: [
+                        { value: usingPublicCloudServicePlatform1, name: '否' },
+                        { value: usingPublicCloudServicePlatform2, name: '不确定' },
+                        { value: usingPublicCloudServicePlatform3, name: '是' },
+                    ],
+                    itemStyle: {
+                        emphasis: {
+                            shadowBlur: 10,
+                            shadowOffsetX: 0,
+                            shadowColor: 'rgba(0, 0, 0, 0.5)'
+                        }
+                    }
+                }
+            ]
+        };
+        myChart.setOption(option);
+                    //end echarts
+    </script>
+
+    <script>//8. 迁移现有信息至云平台
+        //获取数据代码
+        getData("migratingExistingInformationToCloudPlatform1");
+        getData("migratingExistingInformationToCloudPlatform2");
+        getData("migratingExistingInformationToCloudPlatform3");
+
+        //echarts标准代码
+        var myChart = echarts.init(document.getElementById('migratingExistingInformationToCloudPlatform'));
+        option = {
+            title: {
+                text: '企业是否愿意将现有信息系统迁移至基于云计算的国有企业公共服务平台',
+                subtext: '所有企业',
+                x: 'center'
+            },
+            tooltip: {
+                trigger: 'item',
+                formatter: "{a} <br/>{b} : {c} ({d}%)"
+            },
+            legend: {
+                orient: 'vertical',
+                left: 'left',
+                data: ['否', '不确定', '是']
+            },
+            series: [
+                {
+                    name: '访问来源',
+                    type: 'pie',
+                    radius: '55%',
+                    center: ['50%', '60%'],
+                    data: [
+                        { value: migratingExistingInformationToCloudPlatform1, name: '否' },
+                        { value: migratingExistingInformationToCloudPlatform2, name: '不确定' },
+                        { value: migratingExistingInformationToCloudPlatform3, name: '是' },
+                    ],
+                    itemStyle: {
+                        emphasis: {
+                            shadowBlur: 10,
+                            shadowOffsetX: 0,
+                            shadowColor: 'rgba(0, 0, 0, 0.5)'
+                        }
+                    }
+                }
+            ]
+        };
+        myChart.setOption(option);
+                    //end echarts
+    </script>
+
+    <script>//9. 成为云平台前期试点
+        //获取数据代码
+        getData("becomePilotForCloudPlatform1");
+        getData("becomePilotForCloudPlatform2");
+        getData("becomePilotForCloudPlatform3");
+
+        //echarts标准代码
+        var myChart = echarts.init(document.getElementById('becomePilotForCloudPlatform'));
+        option = {
+            title: {
+                text: '企业是否愿意成为国有企业公共服务云平台的前期试点客户',
+                subtext: '所有企业',
+                x: 'center'
+            },
+            tooltip: {
+                trigger: 'item',
+                formatter: "{a} <br/>{b} : {c} ({d}%)"
+            },
+            legend: {
+                orient: 'vertical',
+                left: 'left',
+                data: ['否', '不确定', '是']
+            },
+            series: [
+                {
+                    name: '访问来源',
+                    type: 'pie',
+                    radius: '55%',
+                    center: ['50%', '60%'],
+                    data: [
+                        { value: becomePilotForCloudPlatform1, name: '否' },
+                        { value: becomePilotForCloudPlatform2, name: '不确定' },
+                        { value: becomePilotForCloudPlatform3, name: '是' },
+                    ],
+                    itemStyle: {
+                        emphasis: {
+                            shadowBlur: 10,
+                            shadowOffsetX: 0,
+                            shadowColor: 'rgba(0, 0, 0, 0.5)'
+                        }
+                    }
+                }
+            ]
+        };
+        myChart.setOption(option);
+                    //end echarts
+    </script>
+
+    <script>//10. 支付费用
+        //获取数据代码
+        getData("paymentExpense1");
+        getData("paymentExpense2");
+        getData("paymentExpense3");
+
+        //echarts标准代码
+        var myChart = echarts.init(document.getElementById('paymentExpense'));
+        option = {
+            title: {
+                text: '企业是否愿意为国有企业公共服务云平台的所提供的服务支付合理的费用',
+                subtext: '所有企业',
+                x: 'center'
+            },
+            tooltip: {
+                trigger: 'item',
+                formatter: "{a} <br/>{b} : {c} ({d}%)"
+            },
+            legend: {
+                orient: 'vertical',
+                left: 'left',
+                data: ['否', '不确定', '是']
+            },
+            series: [
+                {
+                    name: '访问来源',
+                    type: 'pie',
+                    radius: '55%',
+                    center: ['50%', '60%'],
+                    data: [
+                        { value: paymentExpense1, name: '否' },
+                        { value: paymentExpense2, name: '不确定' },
+                        { value: paymentExpense3, name: '是' },
+                    ],
+                    itemStyle: {
+                        emphasis: {
+                            shadowBlur: 10,
+                            shadowOffsetX: 0,
+                            shadowColor: 'rgba(0, 0, 0, 0.5)'
+                        }
+                    }
+                }
+            ]
+        };
+        myChart.setOption(option);
+                    //end echarts
+    </script>
+
+    <script>//11. 了解程度
+        //获取数据代码
+        getData("understandingLevel1");
+        getData("understandingLevel2");
+        getData("understandingLevel3");
+
+        //echarts标准代码
+        var myChart = echarts.init(document.getElementById('understandingLevel'));
+        option = {
+            title: {
+                text: '企业对云概念和云服务的了解程度为(是否有计划应用云服务)',
+                subtext: '所有企业',
+                x: 'center'
+            },
+            tooltip: {
+                trigger: 'item',
+                formatter: "{a} <br/>{b} : {c} ({d}%)"
+            },
+            legend: {
+                orient: 'vertical',
+                left: 'left',
+                data: ['熟悉', '有些了解', '不了解']
+            },
+            series: [
+                {
+                    name: '访问来源',
+                    type: 'pie',
+                    radius: '55%',
+                    center: ['50%', '60%'],
+                    data: [
+                        { value: understandingLevel1, name: '熟悉' },
+                        { value: understandingLevel2, name: '有些了解' },
+                        { value: understandingLevel3, name: '不了解' },
+                    ],
+                    itemStyle: {
+                        emphasis: {
+                            shadowBlur: 10,
+                            shadowOffsetX: 0,
+                            shadowColor: 'rgba(0, 0, 0, 0.5)'
+                        }
+                    }
+                }
+            ]
+        };
+        myChart.setOption(option);
+                    //end echarts
+    </script>
+
+    <script>//12. 是否有利于信息化水平
+        //获取数据代码
+        getData("isConduciveToTheLevelOfInformationTechnology1");
+        getData("isConduciveToTheLevelOfInformationTechnology2");
+        getData("isConduciveToTheLevelOfInformationTechnology3");
+
+        //echarts标准代码
+        var myChart = echarts.init(document.getElementById('isConduciveToTheLevelOfInformationTechnology'));
+        option = {
+            title: {
+                text: '云计算模式是否有利于提升企业信息化水平',
+                subtext: '所有企业',
+                x: 'center'
+            },
+            tooltip: {
+                trigger: 'item',
+                formatter: "{a} <br/>{b} : {c} ({d}%)"
+            },
+            legend: {
+                orient: 'vertical',
+                left: 'left',
+                data: ['是', '不确定', '否']
+            },
+            series: [
+                {
+                    name: '访问来源',
+                    type: 'pie',
+                    radius: '55%',
+                    center: ['50%', '60%'],
+                    data: [
+                        { value: isConduciveToTheLevelOfInformationTechnology1, name: '是' },
+                        { value: isConduciveToTheLevelOfInformationTechnology2, name: '不确定' },
+                        { value: isConduciveToTheLevelOfInformationTechnology3, name: '否' },
+                    ],
+                    itemStyle: {
+                        emphasis: {
+                            shadowBlur: 10,
+                            shadowOffsetX: 0,
+                            shadowColor: 'rgba(0, 0, 0, 0.5)'
+                        }
+                    }
+                }
+            ]
+        };
+        myChart.setOption(option);
+                    //end echarts
+    </script>
+
+    <script>//13. 是否有自建的私有云平台
+        //获取数据代码
+        getData("isThereSelfBuiltPrivateCloudPlatform1");
+        getData("isThereSelfBuiltPrivateCloudPlatform2");
+        
+        //echarts标准代码
+        var myChart = echarts.init(document.getElementById('isThereSelfBuiltPrivateCloudPlatform'));
+        option = {
+            title: {
+                text: '企业目前是否有自建的私有云平台',
+                subtext: '所有企业',
+                x: 'center'
+            },
+            tooltip: {
+                trigger: 'item',
+                formatter: "{a} <br/>{b} : {c} ({d}%)"
+            },
+            legend: {
+                orient: 'vertical',
+                left: 'left',
+                data: ['是', '否']
+            },
+            series: [
+                {
+                    name: '访问来源',
+                    type: 'pie',
+                    radius: '55%',
+                    center: ['50%', '60%'],
+                    data: [
+                        { value: isThereSelfBuiltPrivateCloudPlatform1, name: '是' },
+                        { value: isThereSelfBuiltPrivateCloudPlatform2, name: '否' },
+                    ],
+                    itemStyle: {
+                        emphasis: {
+                            shadowBlur: 10,
+                            shadowOffsetX: 0,
+                            shadowColor: 'rgba(0, 0, 0, 0.5)'
+                        }
+                    }
+                }
+            ]
+        };
+        myChart.setOption(option);
+                    //end echarts
+    </script>
+
+    <script>//14. 是否会产生大量信息
+        //获取数据代码
+        getData("isThereSelfBuiltPrivateCloudPlatform1");
+        getData("isThereSelfBuiltPrivateCloudPlatform2");
+        getData("isThereSelfBuiltPrivateCloudPlatform3");
+
+        //echarts标准代码
+        var myChart = echarts.init(document.getElementById('isThereSelfBuiltPrivateCloudPlatform'));
+        option = {
+            title: {
+                text: '企业的信息系统是否会产生大量的信息（包括大量图片、音频、视频等信息）',
+                subtext: '所有企业',
+                x: 'center'
+            },
+            tooltip: {
+                trigger: 'item',
+                formatter: "{a} <br/>{b} : {c} ({d}%)"
+            },
+            legend: {
+                orient: 'vertical',
+                left: 'left',
+                data: ['是', '不确定', '否']
+            },
+            series: [
+                {
+                    name: '访问来源',
+                    type: 'pie',
+                    radius: '55%',
+                    center: ['50%', '60%'],
+                    data: [
+                        { value: isThereSelfBuiltPrivateCloudPlatform1, name: '是' },
+                        { value: isThereSelfBuiltPrivateCloudPlatform2, name: '不确定' },
+                        { value: isThereSelfBuiltPrivateCloudPlatform3, name: '否' },
+                    ],
+                    itemStyle: {
+                        emphasis: {
+                            shadowBlur: 10,
+                            shadowOffsetX: 0,
+                            shadowColor: 'rgba(0, 0, 0, 0.5)'
+                        }
+                    }
+                }
+            ]
+        };
+        myChart.setOption(option);
+                    //end echarts
+    </script>
+</body>
+
+</html>
